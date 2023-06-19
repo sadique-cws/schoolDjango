@@ -1,12 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import authenticate,  login as loginWork
+from django.contrib.auth import authenticate,  login as loginWork, logout
 from django.contrib.auth.decorators import login_required
+from .forms import NotesForm
 
-
-@login_required()
-def homepage(r):
-    return render(r, "home.html")
 
 def login(r):
     form = AuthenticationForm(r.POST or None)
@@ -33,3 +30,13 @@ def register(r):
     return render(r,"accounts/register.html",{"form":form})
 
 
+@login_required()
+def homepage(r):
+    form = NotesForm(r.POST or None)
+    data = {"form":form}
+    return render(r,"home.html",data)
+
+
+def logout_view(r):
+    logout(r)
+    return redirect(homepage)

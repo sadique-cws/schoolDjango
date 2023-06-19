@@ -1,5 +1,28 @@
 {% extends 'main.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
+
+
+    <div class="container flex justify-center w-full px-12 ">
+        <div class="flex w-full gap-3">
+            <div class="w-1/2">
+                <div class="bg-sky-200 rounded p-5">
+                    <h1>Add New Notes</h1>
+                    <form action="">
+                        {{ form|crispy }}
+                        <div class="mb-3">
+                            <input type="submit" class="bg-teal-600 text-white px-3 py-2 rounded">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="w-1/2">
+                <div class="bg-slate-200 rounded p-5">
+                    <h1>Notes List</h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
     
 {% endblock content %}
